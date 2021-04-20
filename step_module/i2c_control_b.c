@@ -4,6 +4,7 @@
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <time.h>
 
 /*register addresses of I2C devices */
 #define I2C_ADDR_GYRO 0x6B
@@ -51,6 +52,35 @@
 #define MAGN_LSB_Z 0x0C
 #define MAGN_MSB_Z 0x0D
 
+/*number of steps*/
+static int steps = 0;
+
+static double last_reading = -9999; 
+static long last_time = 0; 
+
+static int high_state = 1; 
+static int low_state = 1; 
+static int passing_state = 0; 
+ 
+static double high_threshold = 0; 
+static double high_threshold_Alpha = 1.0;
+static double top_threshold = 1;
+static double top_threshold_Min = 0.50; 
+static double top_threshold_Max = 1.5; 
+static double top_threshold_Alpha = 0.0005; 
+
+static double low_threshold = 0; 
+static double low_threshold_Alpha = -1.0;
+static double bottom_threshold = -1; 
+static double bottom_threshold_Max = -0.50; 
+static double bottom_threshold_Min = -1.5; 
+static double bottom_threshold_Alpha = 0.0005; 
+
+static double filter_alpha = 0.9;  
+
+// static int direction = 0;
+// static int prev_direction = 0;
+
 /*stores all the data bits for x y z data */ 
 typedef struct Readings{
     int gyro_x;
@@ -64,7 +94,123 @@ typedef struct Readings{
     int magn_z;
 }Readings;
 
-int convert_data (int msb, int lsb){
+/*  does step detection by detecting if readings cross: bottom, low, high, top boundary */
+/* step must accomplish a lifting, transient, and stepping phase */
+/* lifting phase: negative acceleration when passing low treshold */
+/* passing phase: between lifting phase and stepping phase. must already be on lifting stage, passed low threshold*/
+/* stepping phase: positive acceleration when passing high threshold, must already be on passing phase*/
+int step_detection(int accel_z_measurement) {
+    struct timespec current;
+    clock_gettime(CLOCK_REALTIME, &current);
+    
+    long current_time = current.tv_nsec/1000000;
+    long gapTime1 = (current_time - last_time);
+
+    //if first time, assign last reading as current reading
+    if (last_reading == -9999){
+        last_reading = (accel_z_measurement-1300);
+    }
+
+    //adjust high threshold and boundary for detection
+    if (high_state && (top_threshold > top_threshold_Min)) {
+        top_threshold = top_threshold - top_threshold_Alpha;
+        high_threshold = top_threshold * high_threshold_Alpha;
+    }
+
+    //adjust low threshold and boundary for detection
+    if (low_state && (bottom_threshold < bottom_threshold_Max)) {
+        bottom_threshold = bottom_threshold + bottom_threshold_Alpha;
+        low_threshold = bottom_threshold * low_threshold_Alpha;
+    }
+
+    //perform a low pass filter for sensor reading
+    double transformed_Z = (filter_alpha * last_reading) + (1 - filter_alpha) * (accel_z_measurement-1300);
+
+    //set high state off after 100 ms if already in high state and within high threshold
+    if (high_state && gapTime1 > 100 && (transformed_Z > high_threshold)){
+        high_state = 0;
+    }
+
+    //set low state off if already in passing state and low state and within low threshold
+    if (low_state && (transformed_Z < low_threshold) && passing_state) {
+        low_state = 0;
+    }
+
+    //check if we have reached high state
+    if ((high_state == 0)) {
+        //adjust thresholds if Z already above top
+        if (transformed_Z > top_threshold) {
+            top_threshold = transformed_Z;
+            high_threshold = top_threshold * high_threshold_Alpha;
+
+            //adjust max
+            if (top_threshold > top_threshold_Max) {
+                top_threshold = top_threshold_Max;
+                high_threshold = top_threshold * high_threshold_Alpha;
+            }
+        } else {
+            //otherwise set high state on and passing state on 
+            if (high_threshold > transformed_Z) {
+                high_state = 1;
+                passing_state = 1;
+            }
+        }
+    }
+
+    //check if we have reached low state
+    if ((low_state == 0) && passing_state) {
+
+        //adjust thresholds if Z already below bottom
+        if (transformed_Z < bottom_threshold) {
+            bottom_threshold = transformed_Z;
+            low_threshold = bottom_threshold * low_threshold_Alpha;
+            
+             //adjust min
+            if (bottom_threshold < bottom_threshold_Min) {
+                bottom_threshold = bottom_threshold_Min;
+                low_threshold = bottom_threshold * low_threshold_Alpha;
+            }
+        } else {
+
+            //otherwise set low state and set passing state off 
+            if (low_threshold < transformed_Z) {
+                low_state = 1;
+                passing_state = 0;
+                
+                //increment steps
+                steps++;
+                
+                last_time = current_time;
+            }
+        }
+    }  
+
+    last_reading = transformed_Z;
+
+    return 1;
+}
+
+// int step_detection(int x, int y, int z){
+//     if((z - prev_reading) > 200){
+//         direction = 1;
+//     }
+//     else if((z - prev_reading) < -200){
+//         direction = -1;
+//     }
+//     else{
+//         direction = 0;
+//     }
+
+//     if(z > 1350 && prev_direction == 1 && direction == -1){
+//         steps++;
+//     }
+
+//     prev_direction = direction;
+//     prev_reading = z;
+//     return 1;
+// }
+
+int convert_data (char msb, char lsb){
     int measurement = 0;
     measurement = msb * 256 + lsb;
     if (measurement > 32767){
@@ -196,10 +342,14 @@ int main(){
     int i = 0;
     while(i < 600){
         Readings measurements = retrieve_measurements();
-        printf("%d %d %d %d\n", i, measurements.accel_x,  measurements.accel_y, measurements.accel_z);
-        sleep(1);
+        //printf("%d %d %d %d\n", i, measurements.accel_x,  measurements.accel_y, measurements.accel_z);
+        // step_detection(measurements.accel_x,  measurements.accel_y, measurements.accel_z);
+        step_detection(measurements.accel_z);
+        printf("step: %d z_accel: %d \n", steps, measurements.accel_z);
+        usleep(100000);
         i++;
     }
 
+    
     return 0;
 }

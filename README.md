@@ -13,7 +13,7 @@ Download QT Creator 5 from this [link](https://www.qt.io/download-qt-installer)
 7) Run project (bottom left toolbar)
 
 ## Configure on BU Eng-Grid
-1) Transferr the pokemoneter folder to eng-grid 
+1) Transfer the pokemoneter folder to eng-grid 
 2) In the pokemoneter folder on eng-grid, run 
 ```
 qmake

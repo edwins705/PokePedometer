@@ -29,8 +29,12 @@
       <pointsize>18</pointsize>
      </font>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
+     <string notr="true">background: transparent;
+border: 0px;</string>
     </property>
     <property name="text">
      <string>Step Count</string>
@@ -70,9 +74,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>egg.png</pixmap>
-    </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
@@ -111,9 +112,6 @@
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>ash.png</pixmap>
-    </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
@@ -146,8 +144,15 @@
       <pointsize>18</pointsize>
      </font>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
+     <string notr="true">background: transparent;
+border: 0px;</string>
     </property>
     <property name="text">
      <string>Notification</string>
@@ -170,6 +175,9 @@
       <family>PKMN RBYGSC</family>
       <pointsize>7</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 0px;</string>
     </property>
     <property name="text">
      <string>Welcome to Pokemoneter!</string>

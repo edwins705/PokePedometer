@@ -4,6 +4,7 @@
 #include "qmovie.h"
 #include "qfile.h"
 #include "qfilesystemwatcher.h"
+#include "qpainter.h"
 
 int stepCount = 0;
 bool stepConv = false;
@@ -14,7 +15,14 @@ Pokemoneter::Pokemoneter(QWidget *parent)
 {
     ui->setupUi(this);
 
-
+    // Set Images
+    // Ash
+    QPixmap ashPixmap("ash_1.png");
+    ui->label_3->setPixmap(ashPixmap);
+    // Egg
+    QMovie * eggMovie = new QMovie("egg_hatching.gif");
+    ui->label_2->setMovie(eggMovie);
+    eggMovie->start();
 
     // Watch file
     QFileSystemWatcher *watcher = new QFileSystemWatcher();
@@ -80,13 +88,12 @@ void Pokemoneter::imageChange(int num)
     if (num % 20 == 0)
     {
         // Pokemon GIF (For later?)
-        //QMovie * movie = new QMovie("pikachu_gif.gif");
-        //ui->label_2->setMovie(movie);
-        //movie->start();
+        QMovie * movie = new QMovie("pikachu.gif");
+        ui->label_2->setMovie(movie);
+        movie->start();
 
-        QPixmap pix("pikachu.png");
-        //ui->label_2->setStyleSheet("border-image:url(:/2.png);");
-        ui->label_2->setPixmap(pix);
+        //QPixmap mainPixmap("pikachu_2.png");
+        //ui->label_2->setPixmap(mainPixmap);
     }
     else
     {
@@ -99,4 +106,9 @@ void Pokemoneter::imageChange(int num)
 Pokemoneter::~Pokemoneter()
 {
     delete ui;
+}
+
+void Pokemoneter::on_pushButton_clicked()
+{
+    close();
 }

@@ -20,6 +20,8 @@ private slots:
   void notificationChange(int num);
   void imageChange(int num);
 
+  void on_pushButton_clicked();
+
 private:
     Ui::Pokemoneter *ui;
 };

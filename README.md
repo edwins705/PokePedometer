@@ -1,1 +1,3 @@
 # Pokemoneter
+
+QT Creator Usage

@@ -15,6 +15,11 @@ public:
     Pokemoneter(QWidget *parent = nullptr);
     ~Pokemoneter();
 
+private slots:
+  void fileChanged(const QString & path);
+  void notificationChange(int num);
+  void imageChange(int num);
+
 private:
     Ui::Pokemoneter *ui;
 };

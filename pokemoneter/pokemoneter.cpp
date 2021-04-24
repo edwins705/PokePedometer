@@ -8,6 +8,7 @@
 
 int stepCount = 0;
 bool stepConv = false;
+QString fileName = "input.txt";
 
 Pokemoneter::Pokemoneter(QWidget *parent)
     : QMainWindow(parent)
@@ -16,17 +17,23 @@ Pokemoneter::Pokemoneter(QWidget *parent)
     ui->setupUi(this);
 
     // Set Images
-    // Ash
-    QPixmap ashPixmap("ash_1.png");
-    ui->label_3->setPixmap(ashPixmap);
-    // Egg
-    QMovie * eggMovie = new QMovie("egg_hatching.gif");
-    ui->label_2->setMovie(eggMovie);
-    eggMovie->start();
+    // Ash Image: Variation 1
+    QPixmap ashPixmap("images/ash_1.png");
+    ui->trainer_image->setPixmap(ashPixmap);
+    // Pokemon Image: Unhatched Egg
+    QPixmap pokemonPixmap("images/egg_before_hatching.png");
+    ui->pokemon_image->setPixmap(pokemonPixmap);
+
+    // Create file if doesn't exist
+    //
+    //
+    //
+
+
 
     // Watch file
     QFileSystemWatcher *watcher = new QFileSystemWatcher();
-    bool beingWatched = watcher->addPath("input.txt");
+    bool beingWatched = watcher->addPath(fileName);
     if (beingWatched)
     {
         qInfo("Watched");
@@ -55,51 +62,109 @@ void Pokemoneter::fileChanged(const QString & path)
     qInfo( "%d\n", stepCount );
     if (stepConv == true)
     {
-        ui -> lcdNumber -> display(stepCount);
+        ui -> step_counter -> display(stepCount);
         stepConv = false;
     }
 
     // Change Pikachu and Ash image based on step count
-    notificationChange(stepCount);
-    imageChange(stepCount);
+    int stage = checkStage(stepCount);
+    notificationChange(stage);
+    imageChange(stage);
 }
 
-void Pokemoneter::notificationChange(int num)
+// Checks which stage the egg is in:
+// (stage 0) completely unhatched (0th step and 1 - 9 steps)
+// (stage 1) about to hatch (10 - 19 steps)
+// (stage 2) hatched (20 - 29 steps)
+// (stage 3) found new egg (30 steps)
+int Pokemoneter::checkStage(int steps)
 {
-    // If 10 steps moved
-    if (num % 20 == 0 && num > 0)
+    if ((steps == 0) || ((steps % 30 >= 1) && (steps % 30 <= 9)))
     {
-        ui ->lineEdit_3->setText("Egg hatched!");
+        return 0;
     }
-    else if (num % 10 == 0)
+    else if ((steps % 30 >= 10) && (steps % 30 <= 19))
     {
-        ui ->lineEdit_3->setText("Egg will soon hatch!");
+        return 1;
+    }
+    else if ((steps % 30 >= 20) && (steps % 30 <= 29))
+    {
+        return 2;
     }
     else
     {
-        // Display nothing
-        ui ->lineEdit_3->setText("Keep walking!");
+        return 3;
     }
+
 }
 
-void Pokemoneter::imageChange(int num)
+// Based on current stage, change notification
+void Pokemoneter::notificationChange(int stage)
 {
-    // If 10 steps moved
-    if (num % 20 == 0)
+    if (stage == 0)
     {
-        // Pokemon GIF (For later?)
-        QMovie * movie = new QMovie("pikachu.gif");
-        ui->label_2->setMovie(movie);
-        movie->start();
-
-        //QPixmap mainPixmap("pikachu_2.png");
-        //ui->label_2->setPixmap(mainPixmap);
+        ui ->notification_content->setText("Keep walking!");
+    }
+    else if (stage == 1)
+    {
+        ui ->notification_content->setText("Egg will soon hatch!");
+    }
+    else if (stage == 2)
+    {
+        ui ->notification_content->setText("Egg hatched!");
     }
     else
     {
-        QPixmap pix("egg.png");
-        //ui->label_2->setStyleSheet("border-image:url(:/2.png);");
-        ui->label_2->setPixmap(pix);
+        ui ->notification_content->setText("Found new egg!");
+    }
+}
+
+// Based on current stage, change image
+void Pokemoneter::imageChange(int stage)
+{
+    // If 10 steps moved
+    if (stage == 0)
+    {
+        // Ash Image: Variation 1
+        QPixmap ashPixmap("images/ash_1.png");
+        ui->trainer_image->setPixmap(ashPixmap);
+
+        // Pokemon Image: Unhatched Egg
+        QPixmap pokemonPixmap("images/egg_before_hatching.png");
+        ui->pokemon_image->setPixmap(pokemonPixmap);
+    }
+    else if (stage == 1)
+    {
+        // Ash Image: Variation 1
+        QPixmap ashPixmap("images/ash_1.png");
+        ui->trainer_image->setPixmap(ashPixmap);
+
+        // Pokemon Image: Hatching Egg Gif
+        QMovie * pokemonMovie = new QMovie("images/egg_hatching.gif");
+        ui->pokemon_image->setMovie(pokemonMovie);
+        pokemonMovie->start();
+    }
+    else if (stage == 2)
+    {
+        // Ash Image: Variation 2
+        QPixmap ashPixmap("images/ash_2.png");
+        ui->trainer_image->setPixmap(ashPixmap);
+
+        // Pokemon Image: Pikachu Gif
+        QMovie * pokemonMovie = new QMovie("images/pikachu.gif");
+        ui->pokemon_image->setMovie(pokemonMovie);
+        pokemonMovie->start();
+    }
+    else
+    {
+        // Ash Image Change
+        QPixmap ashPixmap("images/ash_2.png");
+        ui->trainer_image->setPixmap(ashPixmap);
+
+        // Pokemon Image: Found New Egg Gif
+        QMovie * pokemonMovie = new QMovie("images/found_egg.gif");
+        ui->pokemon_image->setMovie(pokemonMovie);
+        pokemonMovie->start();
     }
 }
 
@@ -108,7 +173,14 @@ Pokemoneter::~Pokemoneter()
     delete ui;
 }
 
-void Pokemoneter::on_pushButton_clicked()
+void Pokemoneter::on_back_button_clicked()
+{
+    MainMenu *menu = new MainMenu;
+    this -> close();
+    menu -> show();
+}
+
+void Pokemoneter::on_quit_button_clicked()
 {
     close();
 }

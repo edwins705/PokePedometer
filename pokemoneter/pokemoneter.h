@@ -17,10 +17,11 @@ public:
 
 private slots:
   void fileChanged(const QString & path);
-  void notificationChange(int num);
-  void imageChange(int num);
-
-  void on_pushButton_clicked();
+  void notificationChange(int stage);
+  void imageChange(int stage);
+  int checkStage(int steps);
+  void on_back_button_clicked();
+  void on_quit_button_clicked();
 
 private:
     Ui::Pokemoneter *ui;

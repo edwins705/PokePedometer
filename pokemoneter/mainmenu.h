@@ -15,11 +15,9 @@ public:
     explicit MainMenu(QWidget *parent = nullptr);
     ~MainMenu();
 
-public slots:
-    void openNewWindow();
-
 private slots:
-    void on_pushButton_clicked();
+    void on_play_button_clicked();
+    void on_quit_button_clicked();
 
 private:
     Ui::MainMenu *ui;

@@ -14,7 +14,7 @@
    <string>Pokemoneter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="step_counter_label">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -43,7 +43,7 @@ border: 0px;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
+   <widget class="QLCDNumber" name="step_counter">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -53,18 +53,23 @@ border: 0px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 0;</string>
+     <string notr="true">border: 0px;
+border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
+</string>
     </property>
     <property name="segmentStyle">
      <enum>QLCDNumber::Flat</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="pokemon_image">
     <property name="geometry">
      <rect>
-      <x>380</x>
+      <x>370</x>
       <y>160</y>
-      <width>91</width>
+      <width>101</width>
       <height>101</height>
      </rect>
     </property>
@@ -74,11 +79,14 @@ border: 0px;</string>
     <property name="text">
      <string/>
     </property>
+    <property name="pixmap">
+     <pixmap>images/egg_before_hatching.png</pixmap>
+    </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="background_image">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -91,18 +99,18 @@ border: 0px;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>background.png</pixmap>
+     <pixmap>images/background.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="trainer_image">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>240</x>
       <y>10</y>
-      <width>211</width>
+      <width>181</width>
       <height>241</height>
      </rect>
     </property>
@@ -112,24 +120,38 @@ border: 0px;</string>
     <property name="text">
      <string/>
     </property>
+    <property name="pixmap">
+     <pixmap>images/ash_1.png</pixmap>
+    </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="quit_button">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>100</x>
       <y>240</y>
       <width>80</width>
       <height>22</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>PKMN RBYGSC</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/button_background.png) 0 0 0 0 stretch stretch;</string>
+    </property>
     <property name="text">
-     <string>Exit</string>
+     <string>QUIT</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="notification_label">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -161,7 +183,7 @@ border: 0px;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="notification_content">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -177,7 +199,12 @@ border: 0px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 0px;</string>
+     <string notr="true">border: 0px;
+border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
+</string>
     </property>
     <property name="text">
      <string>Welcome to Pokemoneter!</string>
@@ -186,14 +213,39 @@ border: 0px;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>lcdNumber</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_2</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>lineEdit_3</zorder>
+   <widget class="QPushButton" name="back_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>80</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>PKMN RBYGSC</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/button_background.png) 0 0 0 0 stretch stretch;</string>
+    </property>
+    <property name="text">
+     <string>BACK</string>
+    </property>
+   </widget>
+   <zorder>background_image</zorder>
+   <zorder>step_counter_label</zorder>
+   <zorder>step_counter</zorder>
+   <zorder>trainer_image</zorder>
+   <zorder>pokemon_image</zorder>
+   <zorder>quit_button</zorder>
+   <zorder>notification_label</zorder>
+   <zorder>notification_content</zorder>
+   <zorder>back_button</zorder>
   </widget>
  </widget>
  <resources/>

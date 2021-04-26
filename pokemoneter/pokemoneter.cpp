@@ -59,7 +59,8 @@ void Pokemoneter::fileChanged(const QString & path)
 
     // Step count conversion
     stepCount = line.toInt(&stepConv);
-    qInfo( "%d\n", stepCount );
+    qInfo( "integer: %d\n", stepCount );
+    //qInfo( "line: %s\n", line);
     if (stepConv == true)
     {
         ui -> step_counter -> display(stepCount);

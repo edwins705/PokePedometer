@@ -57,7 +57,7 @@ border: 0px;</string>
 border-radius: 10px;
 border-width: 0px;
 background-color: transparent;
-border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
+border-image: url(images/backgrounds/notification_background.png) 0 0 0 0 stretch stretch;
 </string>
     </property>
     <property name="segmentStyle">
@@ -79,9 +79,6 @@ border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>images/egg_before_hatching.png</pixmap>
-    </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
@@ -99,7 +96,7 @@ border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>images/background.png</pixmap>
+     <pixmap>images/backgrounds/background.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -120,35 +117,8 @@ border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
     <property name="text">
      <string/>
     </property>
-    <property name="pixmap">
-     <pixmap>images/ash_1.png</pixmap>
-    </property>
     <property name="scaledContents">
      <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="quit_button">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>240</y>
-      <width>80</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>PKMN RBYGSC</family>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border-radius: 10px;
-border-width: 0px;
-background-color: transparent;
-border-image: url(images/button_background.png) 0 0 0 0 stretch stretch;</string>
-    </property>
-    <property name="text">
-     <string>QUIT</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="notification_label">
@@ -203,7 +173,7 @@ border: 0px;</string>
 border-radius: 10px;
 border-width: 0px;
 background-color: transparent;
-border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
+border-image: url(images/backgrounds/notification_background.png) 0 0 0 0 stretch stretch;
 </string>
     </property>
     <property name="text">
@@ -231,10 +201,82 @@ border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;
      <string notr="true">border-radius: 10px;
 border-width: 0px;
 background-color: transparent;
-border-image: url(images/button_background.png) 0 0 0 0 stretch stretch;</string>
+border-image: url(images/backgrounds/button_background.png) 0 0 0 0 stretch stretch;</string>
     </property>
     <property name="text">
      <string>BACK</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pokeball_button">
+    <property name="geometry">
+     <rect>
+      <x>439</x>
+      <y>11</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>PKMN RBYGSC</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/icons/pokeball_icon.png) 0 0 0 0 stretch stretch;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="shop_button">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>50</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>PKMN RBYGSC</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/icons/pokecoin_icon.png) 0 0 0 0 stretch stretch;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="capture_button">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>240</y>
+      <width>80</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>PKMN RBYGSC</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/button_background.png) 0 0 0 0 stretch stretch;</string>
+    </property>
+    <property name="text">
+     <string>CAPTURE</string>
     </property>
    </widget>
    <zorder>background_image</zorder>
@@ -242,10 +284,12 @@ border-image: url(images/button_background.png) 0 0 0 0 stretch stretch;</string
    <zorder>step_counter</zorder>
    <zorder>trainer_image</zorder>
    <zorder>pokemon_image</zorder>
-   <zorder>quit_button</zorder>
    <zorder>notification_label</zorder>
    <zorder>notification_content</zorder>
    <zorder>back_button</zorder>
+   <zorder>pokeball_button</zorder>
+   <zorder>shop_button</zorder>
+   <zorder>capture_button</zorder>
   </widget>
  </widget>
  <resources/>

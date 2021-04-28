@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>shop</class>
+ <widget class="QWidget" name="shop">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>272</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Shop</string>
+  </property>
+  <widget class="QLabel" name="background_image">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>481</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>images/backgrounds/background.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="buy_egg_button">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>240</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>PKMN RBYGSC</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/button_background.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string>BUY</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="back_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>PKMN RBYGSC</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/button_background.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string>BACK</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="pokemon_button_1">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+}
+
+QRadioButton::indicator {
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}
+
+QRadioButton::indicator::unchecked{ 
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}
+
+QRadioButton::indicator::checked{ 
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="pokemon_button_3">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>321</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+}
+
+QRadioButton::indicator {
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}
+
+QRadioButton::indicator::unchecked{ 
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}
+
+QRadioButton::indicator::checked{ 
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="pokemon_button_2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>163</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+border-radius: 10px;
+border-width: 0px;
+background-color: transparent;
+}
+
+QRadioButton::indicator {
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}
+
+QRadioButton::indicator::unchecked{ 
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}
+
+QRadioButton::indicator::checked{ 
+width: 0px;
+height: 0px;
+border-radius: 0px;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_unchecked_1">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 15px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/notification_background_dark.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_unchecked_2">
+   <property name="geometry">
+    <rect>
+     <x>163</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 15px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/notification_background_dark.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_unchecked_3">
+   <property name="geometry">
+    <rect>
+     <x>321</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 15px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/notification_background_dark.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_checked_1">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 15px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/notification_background.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_checked_2">
+   <property name="geometry">
+    <rect>
+     <x>163</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 15px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/notification_background.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_checked_3">
+   <property name="geometry">
+    <rect>
+     <x>321</x>
+     <y>5</y>
+     <width>153</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 15px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/notification_background.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="pokecoin_counter">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>242</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;
+border-width: 0px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Flat</enum>
+   </property>
+   <property name="intValue" stdset="0">
+    <number>88888</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokecoin_background">
+   <property name="geometry">
+    <rect>
+     <x>411</x>
+     <y>242</y>
+     <width>60</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+border-width: 0px;
+background-color: transparent;
+border-image: url(images/backgrounds/button_background.png) 0 0 0 0 stretch stretch;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokecoin_icon">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>237</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>images/icons/pokecoin_icon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="pokemon_cost_1">
+   <property name="geometry">
+    <rect>
+     <x>69</x>
+     <y>174</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;
+border-width: 0px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="digitCount">
+    <number>2</number>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Flat</enum>
+   </property>
+   <property name="intValue" stdset="0">
+    <number>20</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_cost_icon_1">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>171</y>
+     <width>35</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="pokemon_cost_2">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>173</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;
+border-width: 0px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="digitCount">
+    <number>2</number>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Flat</enum>
+   </property>
+   <property name="intValue" stdset="0">
+    <number>40</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_cost_icon_2">
+   <property name="geometry">
+    <rect>
+     <x>201</x>
+     <y>170</y>
+     <width>35</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="pokemon_cost_3">
+   <property name="geometry">
+    <rect>
+     <x>389</x>
+     <y>173</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 0px;
+border-width: 0px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="digitCount">
+    <number>2</number>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Flat</enum>
+   </property>
+   <property name="intValue" stdset="0">
+    <number>60</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pokemon_cost_icon_3">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>170</y>
+     <width>35</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="egg_icon_1">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>20</y>
+     <width>113</width>
+     <height>113</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="egg_icon_2">
+   <property name="geometry">
+    <rect>
+     <x>183</x>
+     <y>20</y>
+     <width>113</width>
+     <height>113</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="egg_icon_3">
+   <property name="geometry">
+    <rect>
+     <x>341</x>
+     <y>20</y>
+     <width>113</width>
+     <height>113</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: transparent;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>background_image</zorder>
+  <zorder>pokecoin_background</zorder>
+  <zorder>pokemon_checked_2</zorder>
+  <zorder>pokemon_checked_1</zorder>
+  <zorder>pokemon_checked_3</zorder>
+  <zorder>pokemon_unchecked_3</zorder>
+  <zorder>pokemon_unchecked_2</zorder>
+  <zorder>pokemon_unchecked_1</zorder>
+  <zorder>buy_egg_button</zorder>
+  <zorder>back_button</zorder>
+  <zorder>pokecoin_counter</zorder>
+  <zorder>pokecoin_icon</zorder>
+  <zorder>pokemon_cost_1</zorder>
+  <zorder>pokemon_cost_icon_1</zorder>
+  <zorder>pokemon_cost_2</zorder>
+  <zorder>pokemon_cost_icon_2</zorder>
+  <zorder>pokemon_cost_3</zorder>
+  <zorder>pokemon_cost_icon_3</zorder>
+  <zorder>egg_icon_1</zorder>
+  <zorder>egg_icon_2</zorder>
+  <zorder>egg_icon_3</zorder>
+  <zorder>pokemon_button_1</zorder>
+  <zorder>pokemon_button_3</zorder>
+  <zorder>pokemon_button_2</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

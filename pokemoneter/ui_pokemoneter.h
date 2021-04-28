@@ -29,10 +29,12 @@ public:
     QLabel *pokemon_image;
     QLabel *background_image;
     QLabel *trainer_image;
-    QPushButton *quit_button;
     QLineEdit *notification_label;
     QLineEdit *notification_content;
     QPushButton *back_button;
+    QPushButton *pokeball_button;
+    QPushButton *shop_button;
+    QPushButton *capture_button;
 
     void setupUi(QMainWindow *Pokemoneter)
     {
@@ -59,36 +61,24 @@ public:
 "border-radius: 10px;\n"
 "border-width: 0px;\n"
 "background-color: transparent;\n"
-"border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;\n"
+"border-image: url(images/backgrounds/notification_background.png) 0 0 0 0 stretch stretch;\n"
 ""));
         step_counter->setSegmentStyle(QLCDNumber::Flat);
         pokemon_image = new QLabel(centralwidget);
         pokemon_image->setObjectName(QString::fromUtf8("pokemon_image"));
         pokemon_image->setGeometry(QRect(370, 160, 101, 101));
         pokemon_image->setStyleSheet(QString::fromUtf8("background: transparent;"));
-        pokemon_image->setPixmap(QPixmap(QString::fromUtf8("images/egg_before_hatching.png")));
         pokemon_image->setScaledContents(true);
         background_image = new QLabel(centralwidget);
         background_image->setObjectName(QString::fromUtf8("background_image"));
         background_image->setGeometry(QRect(0, 0, 481, 281));
-        background_image->setPixmap(QPixmap(QString::fromUtf8("images/background.png")));
+        background_image->setPixmap(QPixmap(QString::fromUtf8("images/backgrounds/background.png")));
         background_image->setScaledContents(true);
         trainer_image = new QLabel(centralwidget);
         trainer_image->setObjectName(QString::fromUtf8("trainer_image"));
         trainer_image->setGeometry(QRect(240, 10, 181, 241));
         trainer_image->setStyleSheet(QString::fromUtf8("background: transparent;"));
-        trainer_image->setPixmap(QPixmap(QString::fromUtf8("images/ash_1.png")));
         trainer_image->setScaledContents(true);
-        quit_button = new QPushButton(centralwidget);
-        quit_button->setObjectName(QString::fromUtf8("quit_button"));
-        quit_button->setGeometry(QRect(100, 240, 80, 22));
-        QFont font1;
-        font1.setFamily(QString::fromUtf8("PKMN RBYGSC"));
-        quit_button->setFont(font1);
-        quit_button->setStyleSheet(QString::fromUtf8("border-radius: 10px;\n"
-"border-width: 0px;\n"
-"background-color: transparent;\n"
-"border-image: url(images/button_background.png) 0 0 0 0 stretch stretch;"));
         notification_label = new QLineEdit(centralwidget);
         notification_label->setObjectName(QString::fromUtf8("notification_label"));
         notification_label->setGeometry(QRect(10, 120, 211, 41));
@@ -101,35 +91,63 @@ public:
         notification_content = new QLineEdit(centralwidget);
         notification_content->setObjectName(QString::fromUtf8("notification_content"));
         notification_content->setGeometry(QRect(10, 160, 211, 71));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("PKMN RBYGSC"));
-        font2.setPointSize(7);
-        notification_content->setFont(font2);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("PKMN RBYGSC"));
+        font1.setPointSize(7);
+        notification_content->setFont(font1);
         notification_content->setStyleSheet(QString::fromUtf8("border: 0px;\n"
 "border-radius: 10px;\n"
 "border-width: 0px;\n"
 "background-color: transparent;\n"
-"border-image: url(images/notification_background.png) 0 0 0 0 stretch stretch;\n"
+"border-image: url(images/backgrounds/notification_background.png) 0 0 0 0 stretch stretch;\n"
 ""));
         notification_content->setReadOnly(true);
         back_button = new QPushButton(centralwidget);
         back_button->setObjectName(QString::fromUtf8("back_button"));
         back_button->setGeometry(QRect(10, 240, 80, 22));
-        back_button->setFont(font1);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("PKMN RBYGSC"));
+        back_button->setFont(font2);
         back_button->setStyleSheet(QString::fromUtf8("border-radius: 10px;\n"
 "border-width: 0px;\n"
 "background-color: transparent;\n"
-"border-image: url(images/button_background.png) 0 0 0 0 stretch stretch;"));
+"border-image: url(images/backgrounds/button_background.png) 0 0 0 0 stretch stretch;"));
+        pokeball_button = new QPushButton(centralwidget);
+        pokeball_button->setObjectName(QString::fromUtf8("pokeball_button"));
+        pokeball_button->setGeometry(QRect(439, 11, 31, 31));
+        pokeball_button->setFont(font2);
+        pokeball_button->setStyleSheet(QString::fromUtf8("border-radius: 10px;\n"
+"border-width: 0px;\n"
+"background-color: transparent;\n"
+"border-image: url(images/icons/pokeball_icon.png) 0 0 0 0 stretch stretch;"));
+        shop_button = new QPushButton(centralwidget);
+        shop_button->setObjectName(QString::fromUtf8("shop_button"));
+        shop_button->setGeometry(QRect(440, 50, 31, 31));
+        shop_button->setFont(font2);
+        shop_button->setStyleSheet(QString::fromUtf8("border-radius: 10px;\n"
+"border-width: 0px;\n"
+"background-color: transparent;\n"
+"border-image: url(images/icons/pokecoin_icon.png) 0 0 0 0 stretch stretch;"));
+        capture_button = new QPushButton(centralwidget);
+        capture_button->setObjectName(QString::fromUtf8("capture_button"));
+        capture_button->setGeometry(QRect(100, 240, 80, 22));
+        capture_button->setFont(font2);
+        capture_button->setStyleSheet(QString::fromUtf8("border-radius: 10px;\n"
+"border-width: 0px;\n"
+"background-color: transparent;\n"
+"border-image: url(images/backgrounds/button_background.png) 0 0 0 0 stretch stretch;"));
         Pokemoneter->setCentralWidget(centralwidget);
         background_image->raise();
         step_counter_label->raise();
         step_counter->raise();
         trainer_image->raise();
         pokemon_image->raise();
-        quit_button->raise();
         notification_label->raise();
         notification_content->raise();
         back_button->raise();
+        pokeball_button->raise();
+        shop_button->raise();
+        capture_button->raise();
 
         retranslateUi(Pokemoneter);
 
@@ -143,10 +161,12 @@ public:
         pokemon_image->setText(QString());
         background_image->setText(QString());
         trainer_image->setText(QString());
-        quit_button->setText(QCoreApplication::translate("Pokemoneter", "QUIT", nullptr));
         notification_label->setText(QCoreApplication::translate("Pokemoneter", "Notification", nullptr));
         notification_content->setText(QCoreApplication::translate("Pokemoneter", "Welcome to Pokemoneter!", nullptr));
         back_button->setText(QCoreApplication::translate("Pokemoneter", "BACK", nullptr));
+        pokeball_button->setText(QString());
+        shop_button->setText(QString());
+        capture_button->setText(QCoreApplication::translate("Pokemoneter", "CAPTURE", nullptr));
     } // retranslateUi
 
 };

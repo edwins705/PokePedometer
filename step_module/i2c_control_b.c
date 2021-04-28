@@ -304,21 +304,10 @@ Readings retrieve_measurements(){
     measurement_array.magn_y = convert_data(bits_array[3], bits_array[2]);
     measurement_array.magn_z = convert_data(bits_array[5], bits_array[4]);
 
-    // /*print statements*/
-    // printf("Rotation in X-axis : %d \n", measurement_array.gyro_x);
-    // printf("Rotation in Y-axis : %d \n", measurement_array.gyro_y);
-    // printf("Rotation in Z-axis : %d \n", measurement_array.gyro_z);
-    // printf("Acceleration in X-axis : %d \n", measurement_array.accel_x);
-    // printf("Acceleration in Y-axis : %d \n", measurement_array.accel_y);
-    // printf("Acceleration in Z-axis : %d \n", measurement_array.accel_z);
-    // printf("Magnetic field in X-axis : %d \n", measurement_array.magn_x);
-    // printf("Magnetic field in Y-axis : %d \n", measurement_array.magn_y);
-    // printf("Magnetic field in Z-axis : %d \n", measurement_array.magn_z);
 	return measurement_array;
 }
 
 int main(){
-    //int i = 0;
     int file_io;
     FILE *fptr;
 
@@ -326,31 +315,11 @@ int main(){
     char * line = malloc(32);
     memset(line, 0 , 32);
 
+    /* main operation: detect if step is taken then write into input.txt */
     while(1){
         Readings measurements = retrieve_measurements();
-        //printf("%d %d %d %d\n", i, measurements.accel_x,  measurements.accel_y, measurements.accel_z);
-        //step_detection(measurements.accel_x,  measurements.accel_y, measurements.accel_z);
         step_detection(measurements.accel_z);
-        //printf("step: %d z_accel: %d \n", steps, measurements.accel_z);
 
-
-        /*
-        if((file_io = open(input_text, O_TRUNC)) < 0){
-            printf("Failed to open input text");
-            exit(1);
-        }
-
-        //steps++;
-
-        sprintf(line, "%d", steps);
-
-        if(write(file_io, line, strlen(line)) <= 0){
-            printf("Failed to write input text");
-            exit(1);
-        }
-
-        close (file_io);
-        memset(line, 0 , 32); */
         fptr = fopen(input_text, "w");
         if(fptr == NULL){
             printf("ERROR writing to input file \n");

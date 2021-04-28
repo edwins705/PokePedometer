@@ -68,6 +68,9 @@ Pokemoneter::Pokemoneter(QWidget *parent)
     QString line = in.readLine();
     // Step count conversion
     stepCount = line.toInt(&stepConv);
+      
+    qInfo( "integer: %d\n", stepCount );
+
     if (stepConv == true)
     {
         ui -> step_counter -> display(stepCount);

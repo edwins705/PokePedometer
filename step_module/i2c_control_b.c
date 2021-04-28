@@ -5,9 +5,11 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <time.h>
+#include <string.h>
+#include <stdlib.h>
 
-/*register addresses of I2C devices */
-#define I2C_ADDR_GYRO 0x6B
+/*register addresses of I2C devices 6b and 1d*/
+#define I2C_ADDR_GYRO 0x6B 
 #define I2C_ADDR_ACCELMAG 0X1D
 
 /*register addresses of CONTROL reg */
@@ -77,9 +79,6 @@ static double bottom_threshold_Min = -1.5;
 static double bottom_threshold_Alpha = 0.0005; 
 
 static double filter_alpha = 0.9;  
-
-// static int direction = 0;
-// static int prev_direction = 0;
 
 /*stores all the data bits for x y z data */ 
 typedef struct Readings{
@@ -190,26 +189,6 @@ int step_detection(int accel_z_measurement) {
     return 1;
 }
 
-// int step_detection(int x, int y, int z){
-//     if((z - prev_reading) > 200){
-//         direction = 1;
-//     }
-//     else if((z - prev_reading) < -200){
-//         direction = -1;
-//     }
-//     else{
-//         direction = 0;
-//     }
-
-//     if(z > 1350 && prev_direction == 1 && direction == -1){
-//         steps++;
-//     }
-
-//     prev_direction = direction;
-//     prev_reading = z;
-//     return 1;
-// }
-
 int convert_data (char msb, char lsb){
     int measurement = 0;
     measurement = msb * 256 + lsb;
@@ -245,14 +224,14 @@ Readings retrieve_measurements(){
 
     // open device
     if((file = open(bus, O_RDWR)) <0){
-	printf("Failed to open");
-	exit(1);
+        printf("Failed to open");
+        exit(1);
     }
 
     // Communicate with I2C device
     if(ioctl(file, I2C_SLAVE, I2C_ADDR_GYRO)<0){	
-	printf("Failed to communicate \n");
-	exit(2);
+        printf("Failed to communicate \n");
+        exit(2);
    
    };
     
@@ -268,7 +247,7 @@ Readings retrieve_measurements(){
         int bytes_r = read (file, &bits_array[i], 1);
         if(bytes_w != 1 || bytes_r != 1)
         {
-            printf("Gyro Error : Input/output Erorr. Bytes read %d written %d \n", bytes_r, bytes_w);
+            printf("Gyro Error : Input/output Error. Bytes read %d written %d \n", bytes_r, bytes_w);
             exit(1);
         }
     }	
@@ -300,7 +279,7 @@ Readings retrieve_measurements(){
         int bytes_r = read (file, &bits_array[i], 1);
         if(bytes_w != 1 || bytes_r != 1)
         {
-            printf("Gyro Error : Input/output Erorr. Bytes read %d written %d \n", bytes_r, bytes_w);
+            printf("Gyro Error : Input/output Error. Bytes read %d written %d \n", bytes_r, bytes_w);
             exit(1);
         }
     }	
@@ -316,7 +295,7 @@ Readings retrieve_measurements(){
         int bytes_r = read (file, &bits_array[i], 1);
         if(bytes_w != 1 || bytes_r != 1)
         {
-            printf("Gyro Error : Input/output Erorr. Bytes read %d written %d \n", bytes_r, bytes_w);
+            printf("Gyro Error : Input/output Error. Bytes read %d written %d \n", bytes_r, bytes_w);
             exit(1);
         }
     }	
@@ -339,17 +318,50 @@ Readings retrieve_measurements(){
 }
 
 int main(){
-    int i = 0;
-    while(i < 600){
+    //int i = 0;
+    int file_io;
+    FILE *fptr;
+
+	char * input_text = "input.txt";
+    char * line = malloc(32);
+    memset(line, 0 , 32);
+
+    while(1){
         Readings measurements = retrieve_measurements();
         //printf("%d %d %d %d\n", i, measurements.accel_x,  measurements.accel_y, measurements.accel_z);
-        // step_detection(measurements.accel_x,  measurements.accel_y, measurements.accel_z);
+        //step_detection(measurements.accel_x,  measurements.accel_y, measurements.accel_z);
         step_detection(measurements.accel_z);
-        printf("step: %d z_accel: %d \n", steps, measurements.accel_z);
+        //printf("step: %d z_accel: %d \n", steps, measurements.accel_z);
+
+
+        /*
+        if((file_io = open(input_text, O_TRUNC)) < 0){
+            printf("Failed to open input text");
+            exit(1);
+        }
+
+        //steps++;
+
+        sprintf(line, "%d", steps);
+
+        if(write(file_io, line, strlen(line)) <= 0){
+            printf("Failed to write input text");
+            exit(1);
+        }
+
+        close (file_io);
+        memset(line, 0 , 32); */
+        fptr = fopen(input_text, "w");
+        if(fptr == NULL){
+            printf("ERROR writing to input file \n");
+            exit(1);
+        }
+
+        fprintf(fptr, "%d", steps);
+        fclose(fptr);
+
         usleep(100000);
-        i++;
     }
 
-    
     return 0;
 }

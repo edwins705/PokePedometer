@@ -11,15 +11,21 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainmenu.cpp \
-    pokemoneter.cpp
+    pokeballs.cpp \
+    pokemoneter.cpp \
+    shop.cpp
 
 HEADERS += \
     mainmenu.h \
-    pokemoneter.h
+    pokeballs.h \
+    pokemoneter.h \
+    shop.h
 
 FORMS += \
     mainmenu.ui \
-    pokemoneter.ui
+    pokeballs.ui \
+    pokemoneter.ui \
+    shop.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

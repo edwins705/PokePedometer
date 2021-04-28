@@ -18,6 +18,7 @@ public:
 private slots:
     void on_play_button_clicked();
     void on_quit_button_clicked();
+    void on_reset_button_clicked();
 
 private:
     Ui::MainMenu *ui;

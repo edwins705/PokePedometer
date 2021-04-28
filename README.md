@@ -3,6 +3,9 @@
 ## Downloading QT Creator Under an Open Source License
 Download QT Creator 5 from this [link](https://www.qt.io/download-qt-installer)
 
+## Download Fonts!
+Go to the fonts folder and download the fonts!
+
 ## Configuring Pokemoneter in QT5
 1) File > Open File or Project
 2) Navigate to Pokemoneter folder

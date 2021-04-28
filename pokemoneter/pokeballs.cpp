@@ -70,7 +70,6 @@ pokeballs::pokeballs(QWidget *parent) :
         types << inPokemon.readLine();
         names << inPokemon.readLine();
         steps[i] = inPokemon.readLine().toInt();
-        //qInfo() << "POKEMON " << i << ": type-" << types[i] << ", name-" << names[i] << ", steps-" << steps[i];
 
     }
     pIndex = inPokemon.readLine().toInt();

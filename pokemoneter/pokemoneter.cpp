@@ -580,13 +580,11 @@ void Pokemoneter::on_pokeball_button_clicked()
         }
         QTextStream out(&file);
         out << pStored << "\n";
-        //qInfo() << "WRITING FROM POKE";
         for (int i = 0; i < pStored; i++)
         {
             out << typeList[i] << "\n";
             out << pNames[i] << "\n";
             out << pSteps[i] << "\n";
-            //qInfo() << "POKEMON " << i << ": type-" << typeList[i] << ", name-" << pNames[i] << ", steps-" << pSteps[i];
         }
         out << currentPIndex << "\n";
         out << pokecoins << "\n";

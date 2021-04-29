@@ -24,6 +24,7 @@ int pokecoins;
 int threshold = 10 * 3;   // Find new egg after 10 steps
 int newEggCounter;
 int walkThreshold = 10;
+static int global_steps;
 
 
 Pokemoneter::Pokemoneter(QWidget *parent)
@@ -68,7 +69,7 @@ Pokemoneter::Pokemoneter(QWidget *parent)
     QString line = in.readLine();
     // Step count conversion
     stepCount = line.toInt(&stepConv);
-      
+
     qInfo( "integer: %d\n", stepCount );
 
     if (stepConv == true)
@@ -214,6 +215,7 @@ void Pokemoneter::set(int currentPIndex)
 {
     // Checks stage of pokemon selected for walking
     int stage = checkStage(typeList[currentPIndex], pNames[currentPIndex], pSteps[currentPIndex]);
+    //qInfo("%d stage", stage);
 
     // Sets notification based on stage
     setNotification(stage);
@@ -244,8 +246,10 @@ void Pokemoneter::set(int currentPIndex)
     if (typeList[currentPIndex] == "green")
     {
         // Set the images
+
         if (pNames[currentPIndex] == "egg")
         {
+            qInfo("%s", "green" );
             if (stage == 0 || stage == 1)
             {
                 setImage("trainer 1");
@@ -266,6 +270,7 @@ void Pokemoneter::set(int currentPIndex)
         }
         else if (pNames[currentPIndex] == "pikachu")
         {
+             //qInfo("%s", "green 2" );
             if (stage == 4)
             {
                 setImage("trainer 2");
@@ -492,6 +497,7 @@ void Pokemoneter::fileChanged(const QString & path)
     // Step count conversion
     stepCount = line.toInt(&stepConv);
     //qInfo( "%d\n", stepCount );
+    global_steps = stepCount;
     if (stepConv == true)
     {
         ui -> step_counter -> display(stepCount);
@@ -505,7 +511,7 @@ void Pokemoneter::fileChanged(const QString & path)
     }
 
     // Add steps to the specific pokemon selected
-    pSteps[currentPIndex]++;
+    pSteps[currentPIndex] = stepCount;
     set(currentPIndex);
 }
 
@@ -548,7 +554,6 @@ void Pokemoneter::on_capture_button_clicked()
 {
     // Check stage of current pokemon walking with
     int stage = checkStage(typeList[currentPIndex], pNames[currentPIndex], pSteps[currentPIndex]);
-
     // If pokemon is in "found new egg" stage
     if (stage == 5)
     {

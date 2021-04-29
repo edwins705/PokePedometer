@@ -311,7 +311,7 @@ int main(){
     int file_io;
     FILE *fptr;
 
-	char * input_text = "input.txt";
+	char * input_text = "steps.txt";
     char * line = malloc(32);
     memset(line, 0 , 32);
 

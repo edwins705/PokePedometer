@@ -25,9 +25,9 @@ qmake
 ```
 make
 ```
-4) To run Qt aapplication on beaglebone, copy pokemoneter executable to beaglebone
+4) To run Qt aapplication on beaglebone, copy pokemoneter executable to beaglebone (also requires images folder in beaglebone)
 
-## Configure Driver Program for Beaglebone
+## Configure Accelerometer Driver Program for Beaglebone
 1) Transfer pokemoneter project folder into eng-grid
 2) Locate i2c_controle_b.c and Makefile which is located in step_module folder
 3) Run `` make ``to generate i2c executable
@@ -40,5 +40,6 @@ make
 4) Transfer scripts `` run_poke.sh `` and `` kill_poke.sh `` from run_folder
 5) To run application, run `` run_poke.sh ``
 6) To end application, run `` kill_poke.sh ``
+
 ** Make sure inside your beaglebone, you have your images folder, run_poke.sh, kill_poke.sh, steps.txt, and the pokemoneter and i2c executable files.  
 

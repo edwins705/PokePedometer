@@ -41,5 +41,8 @@ make
 5) To run application, run `` run_poke.sh ``
 6) To end application, run `` kill_poke.sh ``
 
-** Make sure inside your beaglebone, you have your images folder, run_poke.sh, kill_poke.sh, steps.txt, and the pokemoneter and i2c executable files.  
+** Make sure inside your beaglebone, you have your images folder, run_poke.sh, kill_poke.sh, steps.txt, and the pokemoneter and i2c executable files.
+
+## Link to Demo Video:
+[Video Link](https://youtu.be/sVR1tHoSunE)
 
